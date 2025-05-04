@@ -1,5 +1,6 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
+import { Analytics } from '@vercel/analytics/next';
+import Link from 'next/link';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 
@@ -49,6 +50,7 @@ export default function RootLayout({
             <span>2025</span>
           </p>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
