@@ -85,7 +85,7 @@ export default function Home() {
               forskaren och folkbildaren Emma Frans.
             </p>
           </div>
-          <p className="text-sm text-yellow col-span-2 lg:col-span-z lg:col-start-7">
+          <p className="text-sm text-yellow col-span-3 lg:col-span-z lg:col-start-7">
             Vi är icke-kommersiella, politiskt oberoende och teknikneutrala.
             Våra resurser investeras i vårt syfte: att främja kunskap om och
             användning av AI i Sverige
