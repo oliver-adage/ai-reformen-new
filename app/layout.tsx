@@ -1,16 +1,12 @@
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
 import Link from 'next/link';
-import { Geist, Geist_Mono } from 'next/font/google';
+import { Gabarito } from 'next/font/google';
 import './globals.css';
+import Logo from '@/components/Logo';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
-});
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const gabarito = Gabarito({
+  variable: '--font-gabarito-sans',
   subsets: ['latin'],
 });
 
@@ -29,26 +25,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <header>
-          <Link href="/">
-            <span>AI-Reformen</span>
-          </Link>
-          <nav>
-            <Link href="/om-oss">Om oss</Link>
-            <Link href="/fragor-och-svar">Frågor och svar</Link>
-            <Link href="/ai-resurser">AI-resurser</Link>
-            <Link href="/press">Press</Link>
-          </nav>
+      <body className={`${gabarito.variable} antialiased`}>
+        <header className="bg-blue px-5 py-4 md:px-8 md:py-5">
+          <a className="hidden" href="#main">
+            Hoppa till innehåll
+          </a>
+          <div className="flex items-center justify-between">
+            <Link className="text-white" href="/">
+              <Logo className="h-4 w-auto md:h-6" />
+            </Link>
+          </div>
         </header>
         <main id="main">{children}</main>
-        <footer>
-          <p>
-            <span>AI-Reformen</span>
-            <span>2025</span>
-          </p>
+        <footer className="bg-yellow px-5 py-4 md:px-8 md:py-5">
+          <p className="text-sm">© AI-Reformen {new Date().getFullYear()}</p>
         </footer>
         <Analytics />
       </body>
