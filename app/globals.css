@@ -91,7 +91,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --text-md: 0.9375;
+  --text-md: 0.9375rem;
   --text-5xl: 2.5rem;
   --text-7xl: 4rem;
 }
