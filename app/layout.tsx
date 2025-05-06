@@ -27,9 +27,6 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${gabarito.variable} antialiased`}>
         <header className="bg-blue px-5 py-4 md:px-8 md:py-5">
-          <a className="hidden" href="#main">
-            Hoppa till innehåll
-          </a>
           <div className="flex items-center justify-between">
             <Link className="text-white" href="/">
               <Logo className="h-4 w-auto md:h-6" />
@@ -37,8 +34,14 @@ export default function RootLayout({
           </div>
         </header>
         <main id="main">{children}</main>
-        <footer className="bg-yellow px-5 py-4 md:px-8 md:py-5">
+        <footer className="bg-yellow px-5 py-4 md:px-8 md:py-5 flex justify-between items-center">
           <p className="text-sm">© AI-Reformen {new Date().getFullYear()}</p>
+          <p className="text-sm ">
+            Byggd av{' '}
+            <a href="https://compileit.com" className="underline">
+              Compileit
+            </a>
+          </p>
         </footer>
         <Analytics />
       </body>

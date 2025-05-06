@@ -196,8 +196,8 @@ export default function Home() {
         </div>
       </section>
       <section className="bg-blue text-white px-5 py-4 md:px-8 md:py-8">
-        <div className="grid grid-cols-4 mb-8 lg:mb-16 lg:grid-cols-8 gap-5">
-          <div className="col-span-4">
+        <div className="grid grid-cols-4 mb-8 lg:mb-16 lg:grid-cols-12 gap-5">
+          <div className="col-span-12 lg:col-span-6">
             <h2 className="uppercase text-yellow rounded-sm inline-block p-2 border border-yellow text-sm mb-6">
               AI-resurser
             </h2>
@@ -208,6 +208,68 @@ export default function Home() {
               ta dina ai-kunskaper till nästa nivå. Alla resurser är förstås
               kostnadsfria. 
             </p>
+            <div className="mt-14 lg:mt-20">
+              <h3 className="text-yellow text-xl lg:text-2xl mb-3 lg:mb-5">
+                För offentlig sektor
+              </h3>
+              <ul className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+                <li className="col-span-1 text-md bg-white-10 rounded-2xl min-h-72 flex flex-col justify-between p-4">
+                  <p>
+                    Myndigheten för digital förvaltning (Digg) har samlat
+                    information om AI och hur du och din verksamhet kan använda
+                    generativ AI på ett ansvarsfullt och säkert sätt
+                  </p>
+                  <a className="underline" href="https://www.digg.se/ai">
+                    Läs mer
+                  </a>
+                </li>
+                <li className="col-span-1 text-md bg-white-10 rounded-2xl min-h-72 flex flex-col justify-between p-4">
+                  <p>
+                    Digg har tillsammans med Imy också tagit fram riktlinjerna
+                    som vägleder offentliga aktörer så att de kan använda
+                    generativ AI på ett medvetet och ansvarsfullt sätt.
+                  </p>
+                  <a
+                    className="underline"
+                    href="https://www.digg.se/ai-for-offentlig-forvaltning/riktlinjer-for-generativ-ai/om-riktlinjerna"
+                  >
+                    Läs mer
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div className="col-span-12 pt-8 border-t border-yellow relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow lg:col-span-4 lg:col-start-9">
+            <h3 className="text-yellow text-xl lg:text-2xl mb-3 lg:mb-5">
+              Utbildningar - introducerande
+            </h3>
+            <ul className="mb-12">
+              <li>
+                <a href="https://www.ai.se/sv/tillampning/kurser-och-kompetensutveckling/intro-till-generativ-ai">
+                  Intro till Generativ AI från AI Sweden
+                </a>
+              </li>
+              <li>
+                <a href="https://www.ai.se/sv/tillampning/kurser-och-kompetensutveckling/starta-din-ai-resa-onlinekurs">
+                  Starta din AI-resa, e-utbildning från AI Sweden
+                </a>
+              </li>
+              <li>
+                <a href="https://www.elementsofai.com/">
+                  Elements of AI, e-utbildning från Helsiniki University
+                </a>
+              </li>
+            </ul>
+            <h3 className="text-yellow text-xl lg:text-2xl mb-3 lg:mb-5">
+              Utbildningar - fördjupande
+            </h3>
+            <ul>
+              <li>
+                <a href="https://openlearning.mit.edu/news/explore-world-artificial-intelligence-online-courses-mit">
+                  MIT - Open learning
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
       </section>
@@ -222,7 +284,35 @@ export default function Home() {
               om Svenska AI-reformen. Välkommen att höra av dig!
             </p>
           </div>
+          <div className="col-span-3 lg:col-span-2 lg:col-start-7 text-xs">
+            <h3 className="text-yellow mb-2">Presskontakt:</h3>
+            <p>Namn Efternamn</p>
+            <p>
+              <span>E-post: </span>
+              <a className="text-yellow" href="mailto:press@aireformen.se">
+                press@aireformen.se
+              </a>
+            </p>
+          </div>
         </div>
+        <ul className="grid grid-cols-4 gap-5">
+          <li className="col-span-4 lg:col-span-1 border-t border-white pt-4 relative mb-8 before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-white">
+            <span className="block text-sm mb-2">2025-05-07</span>
+            <h3 className="text-xl lg:text-2xl mb-3 lg:mb-5">
+              Ny stiftelse erbjuder gratis AI-verktyg till offentliganställda,
+              studenter och civilsamhälle
+            </h3>
+            <p className="text-md mb-3 lg:mb-5">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+              ultricies tempus urna eget blandit. Ut posuere sollicitudin
+              congue. Vivamus semper, turpis congue viverra dapibus, tortor
+              lectus bibendum nibh, ac vehicula ligula leo ac arcu.
+            </p>
+            {/* <a href="#" className="underline">
+              Läs mer
+            </a> */}
+          </li>
+        </ul>
       </section>
     </>
   );
