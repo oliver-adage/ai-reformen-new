@@ -28,7 +28,7 @@ export default function Home() {
           </a>
           <a
             className="w-full group flex items-center gap-3 justify-between bg-gray hover:bg-yellow rounded-2xl px-5 py-4 mb-3 md:px-8 md:py-5"
-            href="finansiering"
+            href="#finansiering"
           >
             <div>
               <h2 className="text-xl lg:text-2xl">Så finansieras stiftelsen</h2>
