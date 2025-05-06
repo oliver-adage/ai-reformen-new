@@ -205,6 +205,10 @@ export default function Home() {
               Koch, Sven Hagströmer, Carl-Henric Svanberg samt Erik & Staffan
               Salén.
             </p>
+            <p className="text-xl lg:text-2xl mb-8">
+              Stiftelsen fortsätter att ta in donationer för att löpande kunna
+              lansera fler initiativ.{' '}
+            </p>
           </div>
         </div>
       </section>
