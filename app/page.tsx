@@ -96,8 +96,8 @@ export default function Home() {
           </p>
         </div>
       </section>
-      <section className="bg-blue text-white px-5 pt-4 pb-10 md:px-8 md:pt-8 md:pb-16">
-        <div className="grid grid-cols-4 mb-8 lg:mb-16 lg:grid-cols-8 gap-5">
+      <section className="bg-blue text-white px-5 pt-10 pb-10 lg:px-8 lg:pt-16 lg:pb-20">
+        <div className="grid grid-cols-4 py-4 mb-8 lg:mb-16 lg:py-5 lg:grid-cols-8 gap-5">
           <div className="col-span-4">
             <h2 className="uppercase text-yellow rounded-sm inline-block p-2 border border-yellow text-sm mb-6">
               Vilka vi är
