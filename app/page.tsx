@@ -26,7 +26,7 @@ export default function Home() {
           </a>
           <a
             className="w-full group flex items-center gap-3 justify-between bg-gray hover:bg-yellow rounded-2xl px-5 py-4 mb-3 md:px-8 md:py-5"
-            href="#"
+            href="#om"
           >
             <div>
               <h2 className="text-xl lg:text-2xl">Om AI-reformen</h2>
@@ -40,7 +40,7 @@ export default function Home() {
           </a>
           <a
             className="w-full group flex items-center gap-3 justify-between bg-gray hover:bg-yellow rounded-2xl px-5 py-4 mb-3 md:px-8 md:py-5"
-            href="#"
+            href="#press"
           >
             <div>
               <h2 className="text-xl lg:text-2xl">För journalister</h2>
@@ -61,7 +61,10 @@ export default function Home() {
           height={720}
         />
       </section>
-      <section className="flex flex-col items-center justify-center bg-yellow pt-10 pb-16 lg:pt-16 lg:pb-54">
+      <section
+        id="om"
+        className="flex flex-col items-center justify-center bg-yellow pt-10 pb-16 lg:pt-16 lg:pb-54"
+      >
         <h2 className="uppercase rounded-sm inline-block p-2 border border-black text-sm mb-10 lg:mb-34">
           Vår idé
         </h2>
@@ -273,7 +276,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="bg-blue text-white px-5 md:px-8 md:py-8">
+      <section id="press" className="bg-blue text-white px-5 md:px-8 md:py-8">
         <div className="grid grid-cols-4 mb-8 lg:mb-16 lg:grid-cols-8 gap-5 border-t border-yellow py-4 lg:py-8 relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow">
           <div className="col-span-4">
             <h2 className="uppercase text-yellow rounded-sm inline-block p-2 border border-yellow text-sm mb-6">
