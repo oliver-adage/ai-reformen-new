@@ -198,7 +198,7 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section id="#finansiering">
+      <section id="finansiering">
         <div className="flex flex-col items-center justify-center pt-10 pb-16 lg:pt-16 lg:pb-54">
           <h2 className="text-black uppercase rounded-sm inline-block p-2 border border-black text-sm mb-10 lg:mb-34">
             Hur vi finansieras
