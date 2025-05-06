@@ -207,7 +207,14 @@ export default function Home() {
             </p>
             <p className="text-xl lg:text-2xl mb-8">
               Stiftelsen fortsätter att ta in donationer för att löpande kunna
-              lansera fler initiativ.{' '}
+              lansera fler initiativ (se{' '}
+              <a
+                className="underline"
+                href="/insamlingsstiftelsen-svenska-ai-reformen-upprop.pdf"
+              >
+                vårt upprop
+              </a>
+              ). Kontaktuppgifter finns längst ner på sidan
             </p>
           </div>
         </div>
