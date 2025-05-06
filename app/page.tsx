@@ -100,8 +100,8 @@ export default function Home() {
               <Image
                 src="/emma-frans.jpg"
                 alt="Emma Frans"
-                width={326}
-                height={326}
+                width={1080}
+                height={1080}
                 className="w-full h-auto group-hover:scale-105 transition-all duration-300"
               />
             </div>
@@ -118,8 +118,8 @@ export default function Home() {
               <Image
                 src="/joel-hellermark.jpg"
                 alt="Joel Hellermark"
-                width={326}
-                height={326}
+                width={824}
+                height={824}
                 className="w-full h-auto group-hover:scale-105 transition-all duration-300"
               />
             </div>
@@ -133,8 +133,8 @@ export default function Home() {
               <Image
                 src="/olof-hernell.jpg"
                 alt="Olof Hernell"
-                width={326}
-                height={326}
+                width={1080}
+                height={1080}
                 className="w-full h-auto group-hover:scale-105 transition-all duration-300"
               />
             </div>
@@ -151,8 +151,8 @@ export default function Home() {
               <Image
                 src="/nicklas-berild-lundblad.jpg"
                 alt="Nicklas Berild Lundblad"
-                width={326}
-                height={326}
+                width={1080}
+                height={1080}
                 className="w-full h-auto group-hover:scale-105 transition-all duration-300"
               />
             </div>
