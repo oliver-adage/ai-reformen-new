@@ -34,8 +34,19 @@ export default function RootLayout({
           </div>
         </header>
         <main id="main">{children}</main>
-        <footer className="bg-yellow px-5 py-4 md:px-8 md:py-5 flex justify-between items-center">
-          <p className="text-sm">© AI-Reformen {new Date().getFullYear()}</p>
+        <footer className="bg-yellow px-5 py-4 md:px-8 md:py-5 flex justify-between items-end">
+          <div>
+            <div className="mb-8">
+              <p>Kontakta oss</p>
+              <a
+                href="mailto:kontakt@ai-reformen.se"
+                className="text-sm hover:underline"
+              >
+                kontakt@ai-reformen.se
+              </a>
+            </div>
+            <p className="text-sm">© AI-Reformen {new Date().getFullYear()}</p>
+          </div>
           <p className="text-sm ">
             Byggd av{' '}
             <a href="https://compileit.com" className="underline">
