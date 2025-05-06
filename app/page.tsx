@@ -68,7 +68,7 @@ export default function Home() {
       </section>
       <section
         id="om"
-        className="flex flex-col items-center justify-center bg-yellow pt-10 pb-16 lg:pt-16 lg:pb-54"
+        className="flex flex-col items-center justify-center bg-yellow pt-10 pb-16 lg:pt-16 lg:pb-20"
       >
         <div className="font-medium px-5 py-4 lg:px-0 lg:py-5 max-w-5xl">
           <h2 className="uppercase rounded-sm inline-block p-2 border border-black text-sm mb-3">
@@ -189,7 +189,7 @@ export default function Home() {
         </div>
       </section>
       <section id="finansiering">
-        <div className="flex flex-col items-center justify-center pt-10 pb-16 lg:pt-16 lg:pb-54">
+        <div className="flex flex-col items-center justify-center pt-10 pb-16 lg:pt-16 lg:pb-20">
           <div className="font-medium text-2xl px-5 py-4 lg:px-0 lg:py-5 max-w-5xl lg:text-5xl">
             <h2 className="text-black uppercase rounded-sm inline-block p-2 border border-black text-sm mb-3">
               Hur vi finansieras
@@ -214,7 +214,7 @@ export default function Home() {
       </section>
 
       <section className="bg-blue text-white">
-        <div className="flex flex-col items-center justify-center pt-10 pb-16 lg:pt-16 lg:pb-54">
+        <div className="flex flex-col items-center justify-center pt-10 pb-16 lg:pt-16 lg:pb-20">
           <div className="font-medium text-2xl px-5 py-4 lg:px-0 lg:py-5 max-w-5xl lg:text-5xl">
             <h2 className="text-white uppercase rounded-sm inline-block p-2 border border-white text-sm mb-3">
               Stiftelsens första teknikpartner: Sana
@@ -225,7 +225,7 @@ export default function Home() {
                 och stiftelsens första tekniska partner.
               </span>
             </p>
-            <p className="text-xl lg:text-2xlmb-8">
+            <p className="text-xl lg:text-2xl mb-8">
               Som en del av Svenska AI-reformen lanserar Sana en satsning på att
               göra sin AI-plattform, Sana Agents, tillgänglig för offentlig
               sektor, skolor och ideella organisationer. Syftet är att öka
@@ -238,7 +238,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-green">
+      <section className="bg-green pb-6 lg:pb-16">
         <div className="flex flex-col items-center justify-center pt-10 lg:pt-16">
           <div className="w-full max-w-5xl px-5 py-4 lg:px-0 lg:py-5">
             <h2 className="uppercase border-black rounded-sm inline-block p-2 border text-sm mb-3">
