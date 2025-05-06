@@ -13,7 +13,7 @@ export default function QnA() {
           Vad är AI-reformen?
         </AccordionTrigger>
         <AccordionContent>
-          <div className="bg-light-green text-md p-4 lg:p-6 rounded-2xl">
+          <div className="text-md py-4 lg:py-6 lg:text-lg">
             AI-reformen är ett brett folkbildningsinitiativ som syftar till att
             öka kunskapen om AI. Initiativet erbjuder offentlig sektor och
             civilsamhället kostnadsfri tillgång till AI-verktyg och utbildning
@@ -26,7 +26,7 @@ export default function QnA() {
           Vad är Insamlingsstiftelsen Svenska AI-reformen?
         </AccordionTrigger>
         <AccordionContent>
-          <div className="bg-light-green text-md p-4 lg:p-6 rounded-2xl">
+          <div className="text-md py-4 lg:py-6 lg:text-lg">
             Stiftelsen har grundats med målet att ge svenska medborgare och
             organisationer tillgång till AI-verktyg som kan förbättra deras
             vardag och arbete, och därigenom bidra till samhällsnytta.
@@ -42,7 +42,7 @@ export default function QnA() {
           Vad är Sana?
         </AccordionTrigger>
         <AccordionContent>
-          <div className="bg-light-green text-md p-4 lg:p-6 rounded-2xl">
+          <div className="text-md py-4 lg:py-6 lg:text-lg">
             Sana är ett svenskt AI-bolag som utvecklar produkter för att
             förbättra hur människor och organisationer får tillgång till och
             använder kunskap med hjälp av AI. Sana är både medfinnansiär av
@@ -55,7 +55,7 @@ export default function QnA() {
           Hur får jag tillgång till tjänsten från Sana?
         </AccordionTrigger>
         <AccordionContent>
-          <div className="bg-light-green text-md p-4 lg:p-6 rounded-2xl">
+          <div className="text-md py-4 lg:py-6 lg:text-lg">
             Du ansöker via AI-reformens webbplats
             (https://sanalabs.com/ai-reform). Tillgång beviljas efter
             verifiering av att din organisation tillhör offentlig sektor eller
@@ -74,7 +74,7 @@ export default function QnA() {
           Kommer det mer?
         </AccordionTrigger>
         <AccordionContent>
-          <div className="bg-light-green text-md p-4 lg:p-6 rounded-2xl">
+          <div className="text-md py-4 lg:py-6 lg:text-lg">
             Ja, intentionen är att jobba brett med folkbildning om och tillgång
             till AI-tjänster. Stiftelsen är i sin linda och kommer löpande
             återkomma löpande med fler initiativ.

@@ -4,6 +4,7 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
+  --pink: #D9ABC7;
   --black: rgba(0, 0, 0, 1);
   --black-5: rgba(0, 0, 0, 0.05);
   --black-25: rgba(0, 0, 0, 0.25);
@@ -56,6 +57,7 @@
   --color-blue: var(--blue);
   --color-yellow: var(--yellow);
   --color-green: var(--green);
+  --color-pink: var(--pink);
   --color-light-green: var(--light-green);
   --color-gray: var(--gray);
   --font-sans: var(--font-geist-sans);
@@ -96,6 +98,7 @@
   --text-md: 0.9375rem;
   --text-5xl: 2.5rem;
   --text-7xl: 4rem;
+  --text-10xl: 6rem;
 }
 
 .dark {
