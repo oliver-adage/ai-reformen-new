@@ -51,9 +51,11 @@ export default function GoogleAnalytics({
         type="text/javascript"
       />
       <Script
+        id="GoogleAnalytics"
         src={`https://www.googletagmanager.com/gtag/js?id=${measurementId}`}
       />
       <Script
+        id="GoogleAnalyticsCode"
         dangerouslySetInnerHTML={{
           __html: `
           window.dataLayer = window.dataLayer || [];
