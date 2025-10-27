@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { Gabarito } from 'next/font/google';
 import './globals.css';
 import Logo from '@/components/Logo';
+import GoogleAnalytics from '@/components/GoogleAnalytics';
 
 const gabarito = Gabarito({
   variable: '--font-gabarito-sans',
@@ -25,6 +26,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <GoogleAnalytics measurementId="G-LK7F0PZ2PY" />
+      </head>
       <body className={`${gabarito.variable} antialiased`}>
         <header className="bg-blue px-5 py-4 md:px-8 md:py-5">
           <div className="flex items-center justify-between">
