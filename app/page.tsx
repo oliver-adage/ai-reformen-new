@@ -105,7 +105,7 @@ export default function Home() {
             <p className="text-white text-2xl lg:text-5xl lg:leading-12 mb-6">
               Svenska AI-reformen grundades av Olof Hernell, Nicklas Berild
               Lundblad och Joel Hellermark. I stiftelsens styrelse ingår också
-              forskaren och folkbildaren Emma Frans.
+              Lisa Lindström.
             </p>
             <p className="text-white text-xl lg:text-2xl">
               Svenska AI-reformen är en ideell, partipolitiskt oberoende och
@@ -117,24 +117,6 @@ export default function Home() {
           </div>
         </div>
         <div className="grid grid-cols-4 lg:grid-cols-8 gap-5">
-          <div className="group col-span-2">
-            <div className="w-full h-auto overflow-hidden">
-              <Image
-                src="/emma-frans.jpg"
-                alt="Emma Frans"
-                width={1080}
-                height={1080}
-                className="w-full h-auto group-hover:scale-105 transition-all duration-300"
-              />
-            </div>
-            <div className="pt-3 mt-3 border-t border-yellow relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow">
-              <h3 className="text-2xl mb-2">Emma Frans</h3>
-              <p className="text-md opacity-75">
-                Forskare, folkbildare och vetenskapskommunikatör. Två gånger
-                utsedd till Årets Folkbildare.
-              </p>
-            </div>
-          </div>
           <div className="group col-span-2">
             <div className="w-full h-auto overflow-hidden">
               <Image
@@ -153,18 +135,17 @@ export default function Home() {
           <div className="group col-span-2">
             <div className="w-full h-auto overflow-hidden">
               <Image
-                src="/olof-hernell.jpg"
-                alt="Olof Hernell"
+                src="/lisa-lindstrom.jpg"
+                alt="Lisa Lindström"
                 width={1080}
                 height={1080}
                 className="w-full h-auto group-hover:scale-105 transition-all duration-300"
               />
             </div>
             <div className="pt-3 mt-3 border-t border-yellow relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow">
-              <h3 className="text-2xl mb-2">Olof Hernell</h3>
+              <h3 className="text-2xl mb-2">Lisa Lindström</h3>
               <p className="text-md opacity-75">
-                Digitaliseringschef på Stegra. Tidigare på Google, EQT och
-                ledamot i regeringens AI-kommission.
+                Partner på EY. Grundare och tidigare VD av Doberman.
               </p>
             </div>
           </div>
@@ -183,6 +164,25 @@ export default function Home() {
               <p className="text-md opacity-75">
                 Författare, forskare och policyexpert. Tidigare på Google,
                 DeepMind och ledamot i regeringens AI-kommission.
+              </p>
+            </div>
+          </div>
+          <div className="group col-span-2">
+            <div className="w-full h-auto overflow-hidden">
+              <Image
+                src="/olof-hernell.jpg"
+                alt="Olof Hernell"
+                width={1080}
+                height={1080}
+                className="w-full h-auto group-hover:scale-105 transition-all duration-300"
+              />
+            </div>
+            <div className="pt-3 mt-3 border-t border-yellow relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow">
+              <h3 className="text-2xl mb-2">Olof Hernell</h3>
+              <p className="text-md opacity-75">
+                Managing Director, Portfolio Operations, Digital and AI på
+                Investor. Tidigare på Stegra, Google, EQT och ledamot i
+                regeringens AI-kommission
               </p>
             </div>
           </div>
