@@ -11,54 +11,25 @@ export default function Home() {
           med. Nu.
         </h1>
 
-        {/* Om oss */}
-        <Link
-          className="w-full group flex items-center gap-3 justify-between bg-gray hover:bg-yellow rounded-2xl px-5 py-4 mb-3 md:px-8 md:py-5"
-          href="/om-oss"
-        >
-          <div>
-            <h2 className="text-lg lg:text-2xl">
-              Om Stiftelsen Svenska AI-reformen
-            </h2>
-            <p className="text-md opacity-45">
-              Stiftelsens syfte och grundare
-            </p>
-          </div>
-          <span className="block bg-black-5 text-black group-hover:bg-black group-hover:text-white p-3 rounded-full text-center text-nowrap w-24">
-            Läs mer
-          </span>
-        </Link>
+{/* Short Om oss teaser (white background) */}
+<section className="py-10 lg:py-16 bg-white">
+  <div className="max-w-5xl mx-auto px-5 lg:px-0">
 
-        {/* Nyheter / pressmeddelanden */}
-        <Link
-          className="w-full group flex items-center gap-3 justify-between bg-gray hover:bg-yellow rounded-2xl px-5 py-4 mb-3 md:px-8 md:py-5"
-          href="/nyheter"
-        >
-          <div>
-            <h2 className="text-xl lg:text-2xl">Pressmeddelande & nyheter</h2>
-            <p className="text-md opacity-45">Senaste uppdateringarna</p>
-          </div>
-          <span className="block bg-black-5 text-black group-hover:bg-black group-hover:text-white p-3 rounded-full text-center text-nowrap w-24">
-            Läs mer
-          </span>
-        </Link>
+    <p className="text-xl lg:text-3xl mb-6">
+      Svenska AI-reformen arbetar för att göra tillämpad AI tillgänglig för
+      alla i Sverige – i offentlig sektor, utbildning och civilsamhälle.
+    </p>
 
-        {/* Finansiering */}
-        <Link
-          className="w-full group flex items-center gap-3 justify-between bg-gray hover:bg-yellow rounded-2xl px-5 py-4 mb-3 md:px-8 md:py-5"
-          href="/finansiering"
-        >
-          <div>
-            <h2 className="text-xl lg:text-2xl">Så finansieras stiftelsen</h2>
-            <p className="text-md opacity-45">
-              Vår finansiering och stiftelsens donatorer
-            </p>
-          </div>
-          <span className="block bg-black-5 text-black group-hover:bg-black group-hover:text-white p-3 rounded-full text-center text-nowrap w-24">
-            Läs mer
-          </span>
-        </Link>
+    <Link
+      href="/om-oss"
+      className="inline-block bg-black text-white px-6 py-3 rounded-xl hover:bg-gray-700 text-lg"
+    >
+      Läs mer
+    </Link>
+  </div>
+</section>
 
+     
         {/* Partner / program */}
         <Link
           className="w-full group flex items-center gap-3 justify-between bg-gray hover:bg-yellow rounded-2xl px-5 py-4 mb-3 md:px-8 md:py-5"
@@ -77,21 +48,11 @@ export default function Home() {
             Ansök här
           </span>
         </Link>
-
-        {/* FAQ */}
-        <Link
-          className="w-full group flex items-center gap-3 justify-between bg-gray hover:bg-yellow rounded-2xl px-5 py-4 mb-3 md:px-8 md:py-5"
-          href="/faq"
-        >
-          <div>
-            <h2 className="text-xl lg:text-2xl">Frågor och svar</h2>
-            <p className="text-md opacity-45">Vanliga frågor om stiftelsen</p>
-          </div>
-          <span className="block bg-black-5 text-black group-hover:bg-black group-hover:text-white p-3 rounded-full text-center text-nowrap w-24">
-            Läs mer
-          </span>
-        </Link>
       </div>
+
+
+
+
 
       <Image
         className="w-full h-auto lg:w-1/2"
