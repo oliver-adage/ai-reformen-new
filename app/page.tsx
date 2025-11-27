@@ -28,6 +28,22 @@ export default function Home() {
           </a>
           <a
             className="w-full group flex items-center gap-3 justify-between bg-gray hover:bg-yellow rounded-2xl px-5 py-4 mb-3 md:px-8 md:py-5"
+            href="#pressmeddelande"
+          >
+            <div>
+              <h2 className="text-lg lg:text-2xl">
+                Pressmeddelande
+              </h2>
+              <p className="text-md opacity-45">
+                Information
+              </p>
+            </div>
+            <span className="block bg-black-5 text-black group-hover:bg-black group-hover:text-white p-3 rounded-full text-center text-nowrap w-24">
+              Läs mer
+            </span>
+          </a>
+          <a
+            className="w-full group flex items-center gap-3 justify-between bg-gray hover:bg-yellow rounded-2xl px-5 py-4 mb-3 md:px-8 md:py-5"
             href="#finansiering"
           >
             <div>
@@ -60,7 +76,7 @@ export default function Home() {
         </div>
         <Image
           className="w-full h-auto lg:w-1/2"
-          src="/image00.jpg"
+          src="/image01.png"
           alt="AI-Reformen"
           width={720}
           height={720}
@@ -185,6 +201,37 @@ export default function Home() {
                 regeringens AI-kommission
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+      <section id="pressmeddelande">
+        <div className="flex flex-col items-center justify-center pt-10 pb-16 lg:pt-16 lg:pb-20">
+          <div className="font-medium text-2xl px-5 py-4 lg:px-0 lg:py-5 max-w-5xl lg:text-5xl">
+            <h2 className="text-black uppercase rounded-sm inline-block p-2 border border-black text-sm mb-3">
+              Pressmeddelande
+            </h2>
+            <p className="text-2xl lg:text-5xl lg:leading-12 mb-8">
+              Svenska AI-reformen bedrivs helt utan kommersiella syften och
+              finansieras av privata donationer – med alla resurser
+              återinvesterade i initiativets syfte.
+            </p>
+            <p className="text-xl lg:text-2xl mb-8">
+              Den initiala finansieringen av stiftelsen kommer från AI-bolaget
+              Sana samt generösa donationer från privatpersonerna Thomas von
+              Koch, Sven Hagströmer, Carl-Henric Svanberg samt Erik & Staffan
+              Salén.
+            </p>
+            <p className="text-xl lg:text-2xl mb-8">
+              Stiftelsen fortsätter att ta in donationer för att löpande kunna
+              lansera fler initiativ (se{' '}
+              <a
+                className="underline"
+                href="/insamlingsstiftelsen-svenska-ai-reformen-upprop.pdf"
+              >
+                vårt upprop
+              </a>
+              ). Kontaktuppgifter finns längst ner på sidan
+            </p>
           </div>
         </div>
       </section>
