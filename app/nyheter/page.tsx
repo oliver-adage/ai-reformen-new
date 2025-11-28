@@ -49,23 +49,22 @@ export default async function NyheterPage() {
           Pressmeddelanden
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[2fr,1fr] gap-10">
+        {/* 3-column grid on lg: main content spans 2, sidebar spans 1 */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start">
           {/* Left: main article content */}
-          <ul className="space-y-10">
+          <ul className="space-y-10 lg:col-span-2">
             {articles.map((item) => {
               const f = item.fields as any;
 
               const fullText = f.body ? richTextToPlainText(f.body) : '';
               const allLines = fullText ? fullText.split('\n') : [];
               const snippet =
-                allLines.length > 0
-                  ? allLines.slice(0, 3).join('\n')
-                  : ''; // first 3 lines
+                allLines.length > 0 ? allLines.slice(0, 3).join('\n') : ''; // first 3 lines
 
               const id = `article-${item.sys.id}`;
 
               return (
-                <li key={item.sys.id}>
+                <li key={item.sys.id} id={id}>
                   <ArticleItem
                     id={id}
                     title={f.title}
@@ -80,7 +79,7 @@ export default async function NyheterPage() {
           </ul>
 
           {/* Right: list of titles for quick navigation */}
-          <aside className="hidden lg:block border-l pl-6">
+          <aside className="hidden lg:block lg:border-l lg:pl-6">
             <h3 className="text-xs font-semibold uppercase mb-3">
               Alla pressmeddelanden
             </h3>
