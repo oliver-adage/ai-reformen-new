@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // app/nyheter/page.tsx
 import { getArticles } from '@/lib/contentful';
 import { ArticleItem } from '@/components/ArticleItem';

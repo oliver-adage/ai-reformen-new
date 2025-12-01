@@ -1,5 +1,5 @@
 // lib/contentful.ts
-import { createClient, type EntrySkeletonType } from 'contentful';
+import { createClient, type EntrySkeletonType, type EntryFieldTypes } from 'contentful';
 
 export const contentfulClient = createClient({
   space: process.env.CONTENTFUL_SPACE_ID!,
@@ -7,14 +7,13 @@ export const contentfulClient = createClient({
   environment: process.env.CONTENTFUL_ENVIRONMENT || 'master',
 });
 
-type ArticleSkeleton = EntrySkeletonType & {
-  contentTypeId: 'pressRelease';
-  fields: {
-    title: string;
-    subtitle?: string;
-    date?: string;
-  };
+type ArticleFields = {
+  title: EntryFieldTypes.Text;
+  subtitle?: EntryFieldTypes.Text;
+  date?: EntryFieldTypes.Date;
 };
+
+type ArticleSkeleton = EntrySkeletonType<ArticleFields>;
 
 export async function getArticles() {
   const contentType = process.env.CONTENTFUL_ARTICLE_TYPE_ID || 'pressrelease';
