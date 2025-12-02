@@ -67,12 +67,6 @@ export default function RootLayout({
           <div>
             <p className="text-sm">© AI-Reformen {new Date().getFullYear()}</p>
           </div>
-          <p className="text-sm ">
-            Byggd av{' '}
-            <a href="https://compileit.com" className="underline">
-              Compileit
-            </a>
-          </p>
         </footer>
 
         <Analytics />
