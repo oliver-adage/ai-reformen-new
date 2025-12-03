@@ -39,9 +39,6 @@ export default function RootLayout({
 
             {/* Desktop navigation */}
             <nav className="hidden md:flex items-center gap-6 text-white text-sm md:text-base">
-              <Link href="/" className="hover:underline">
-                Hem
-              </Link>
               <Link href="/om-oss" className="hover:underline">
                 Om oss
               </Link>
@@ -58,7 +55,18 @@ export default function RootLayout({
                 FAQ
               </Link>
             </nav>
+
+            
+
           </div>
+          {/* Mobile navigation */}
+            <nav className="flex md:hidden items-center gap-4 text-white text-sm mt-3">
+              <Link href="/om-oss" className="hover:underline">Om oss</Link>
+              <Link href="/nyheter" className="hover:underline">Nyheter</Link>
+              <Link href="/finansiering" className="hover:underline">Finansiering</Link>
+              <Link href="/partners" className="hover:underline">Partners</Link>
+              <Link href="/faq" className="hover:underline">FAQ</Link>
+            </nav>
         </header>
 
         <main id="main">{children}</main>
