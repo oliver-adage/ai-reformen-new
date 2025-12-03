@@ -59,8 +59,8 @@ export default async function NyheterPage() {
 
               const fullText = f.body ? richTextToPlainText(f.body) : '';
               const allLines = fullText ? fullText.split('\n') : [];
-              const snippet =
-                allLines.length > 0 ? allLines.slice(0, 3).join('\n') : ''; // first 3 lines
+              // show only the first paragraph in the collapsed view
+              const snippet = allLines.length > 0 ? allLines[0] : '';
 
               const id = `article-${item.sys.id}`;
 

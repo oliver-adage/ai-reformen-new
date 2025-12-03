@@ -51,7 +51,7 @@ export function ArticleItem({
           onClick={() => setExpanded((v) => !v)}
           className="text-sm underline"
         >
-          {expanded ? 'Visa mindre' : 'Läs mer'}
+          {expanded ? 'Visa mindre' : 'läs mer'}
         </button>
       )}
     </article>
