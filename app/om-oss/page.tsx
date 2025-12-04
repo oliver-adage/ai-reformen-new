@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // app/om-oss/page.tsx
 import { contentfulClient } from '@/lib/contentful';
 
