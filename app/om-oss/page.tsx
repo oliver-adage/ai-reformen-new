@@ -1,7 +1,64 @@
 // app/om-oss/page.tsx
-import Image from 'next/image';
+import { contentfulClient } from '@/lib/contentful';
 
-export default function OmOssPage() {
+type Biography = {
+  id: string;
+  name: string;
+  portraitUrl: string;
+  presentation: string[];
+};
+
+function richTextToParagraphs(doc: any): string[] {
+  if (!doc || !Array.isArray(doc.content)) return [];
+
+  const paragraphs: string[] = [];
+
+  for (const node of doc.content) {
+    if (node.nodeType === 'paragraph' && Array.isArray(node.content)) {
+      let text = '';
+      for (const child of node.content) {
+        if (child.nodeType === 'text' && typeof child.value === 'string') {
+          text += child.value;
+        }
+      }
+      if (text.trim()) {
+        paragraphs.push(text.trim());
+      }
+    }
+  }
+
+  return paragraphs;
+}
+
+async function getBiographies(): Promise<Biography[]> {
+  const contentType = process.env.CONTENTFUL_BIOGRAPHY_TYPE_ID || 'biography';
+
+  const res = await contentfulClient.getEntries({
+    content_type: contentType,
+    order: ['fields.firstNameLastName'],
+    include: 2,
+  });
+
+  return (res.items as any[]).map((item) => {
+    const fields = item.fields || {};
+    const portraitFile = fields.portrait?.fields?.file;
+    const portraitUrl =
+      portraitFile?.url && typeof portraitFile.url === 'string'
+        ? `https:${portraitFile.url}`
+        : '';
+
+    return {
+      id: item.sys.id as string,
+      name: fields.firstNameLastName as string,
+      portraitUrl,
+      presentation: richTextToParagraphs(fields.presentation),
+    };
+  });
+}
+
+export default async function OmOssPage() {
+  const biographies = await getBiographies();
+
   return (
     <>
       <section className="flex flex-col items-center justify-center bg-yellow pt-10 pb-16 lg:pt-16 lg:pb-20">
@@ -54,82 +111,33 @@ export default function OmOssPage() {
         </div>
 
         <div className="grid grid-cols-4 lg:grid-cols-8 gap-5">
-          {/* Joel */}
-          <div className="group col-span-2">
-            <div className="w-full h-auto overflow-hidden">
-              <Image
-                src="/joel-hellermark.jpg"
-                alt="Joel Hellermark"
-                width={1080}
-                height={1080}
-                className="w-full h-auto group-hover:scale-105 transition-all duration-300"
-              />
-            </div>
-            <div className="pt-3 mt-3 border-t border-yellow relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow">
-              <h3 className="text-2xl mb-2">Joel Hellermark</h3>
-              <p className="text-md opacity-75">Grundare och VD för Sana.</p>
-            </div>
-          </div>
-
-          {/* Lisa */}
-          <div className="group col-span-2">
-            <div className="w-full h-auto overflow-hidden">
-              <Image
-                src="/lisa-lindstrom.jpg"
-                alt="Lisa Lindström"
-                width={1080}
-                height={1080}
-                className="w-full h-auto group-hover:scale-105 transition-all duration-300"
-              />
-            </div>
-            <div className="pt-3 mt-3 border-t border-yellow relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow">
-              <h3 className="text-2xl mb-2">Lisa Lindström</h3>
-              <p className="text-md opacity-75">
-                Partner på EY. Grundare och tidigare VD av Doberman.
-              </p>
-            </div>
-          </div>
-
-          {/* Nicklas */}
-          <div className="group col-span-2">
-            <div className="w-full h-auto overflow-hidden">
-              <Image
-                src="/nicklas-berild-lundblad.jpg"
-                alt="Nicklas Berild Lundblad"
-                width={1080}
-                height={1080}
-                className="w-full h-auto group-hover:scale-105 transition-all duration-300"
-              />
-            </div>
-            <div className="pt-3 mt-3 border-t border-yellow relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow">
-              <h3 className="text-2xl mb-2">Nicklas Berild Lundblad</h3>
-              <p className="text-md opacity-75">
-                Författare, forskare och policyexpert. Tidigare på Google,
-                DeepMind och ledamot i regeringens AI-kommission.
-              </p>
-            </div>
-          </div>
-
-          {/* Olof */}
-          <div className="group col-span-2">
-            <div className="w-full h-auto overflow-hidden">
-              <Image
-                src="/olof-hernell.jpg"
-                alt="Olof Hernell"
-                width={1080}
-                height={1080}
-                className="w-full h-auto group-hover:scale-105 transition-all duration-300"
-              />
-            </div>
-            <div className="pt-3 mt-3 border-t border-yellow relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow">
-              <h3 className="text-2xl mb-2">Olof Hernell</h3>
-              <p className="text-md opacity-75">
-                Managing Director, Portfolio Operations, Digital and AI på
-                Investor. Tidigare på Stegra, Google, EQT och ledamot i
-                regeringens AI-kommission
-              </p>
-            </div>
-          </div>
+          {biographies.length === 0 ? (
+            <p className="col-span-4 lg:col-span-8 text-lg">
+              Inga biografier tillgångliga just nu.
+            </p>
+          ) : (
+            biographies.map((bio) => (
+              <div key={bio.id} className="group col-span-4 lg:col-span-2">
+                {bio.portraitUrl && (
+                  <div className="w-full h-auto overflow-hidden">
+                    <img
+                      src={bio.portraitUrl}
+                      alt={bio.name}
+                      className="w-full h-auto group-hover:scale-105 transition-all duration-300"
+                    />
+                  </div>
+                )}
+                <div className="pt-3 mt-3 border-t border-yellow relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow">
+                  <h3 className="text-2xl mb-2">{bio.name}</h3>
+                  {bio.presentation.map((text, idx) => (
+                    <p key={idx} className="text-md opacity-75">
+                      {text}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))
+          )}
         </div>
       </section>
     </>
