@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/partners/page.tsx
-import { withContentfulClient } from '@/lib/contentful';
+import { resolveContentTypeId, withContentfulClient } from '@/lib/contentful';
+
+export const dynamic = 'force-dynamic';
 
 type TechnicalPartner = {
   id: string;
@@ -72,8 +74,10 @@ function classifyPartnerType(type: string | undefined) {
 }
 
 async function getPartners(): Promise<Partner[]> {
-  const contentType =
-    process.env.CONTENTFUL_PARTNER_TYPE_ID?.trim() || 'partner';
+  const contentType = resolveContentTypeId(
+    [process.env.CONTENTFUL_PARTNER_TYPE_ID],
+    'partner'
+  );
 
   return withContentfulClient(
     async (client) => {

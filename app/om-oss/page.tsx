@@ -1,6 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/om-oss/page.tsx
-import { withContentfulClient } from '@/lib/contentful';
+import { resolveContentTypeId, withContentfulClient } from '@/lib/contentful';
+
+export const dynamic = 'force-dynamic';
 
 type Biography = {
   id: string;
@@ -8,6 +10,10 @@ type Biography = {
   portraitUrl: string;
   bio: string[];
 };
+
+function fieldToString(value: unknown) {
+  return typeof value === 'string' ? value.trim() : '';
+}
 
 function fieldToParagraphs(value: any): string[] {
   if (!value) return [];
@@ -41,8 +47,10 @@ function fieldToParagraphs(value: any): string[] {
 }
 
 async function getBiographies(): Promise<Biography[]> {
-  const contentType =
-    process.env.CONTENTFUL_PERSON_TYPE_ID?.trim() || 'person';
+  const contentType = resolveContentTypeId(
+    [process.env.CONTENTFUL_PERSON_TYPE_ID],
+    'person'
+  );
 
   return withContentfulClient(
     async (client) => {
@@ -62,7 +70,7 @@ async function getBiographies(): Promise<Biography[]> {
 
         return {
           id: item.sys.id as string,
-          name: fields.name as string,
+          name: fieldToString(fields.name) || 'Okand person',
           portraitUrl,
           bio: fieldToParagraphs(fields.bio),
         };

@@ -13,6 +13,33 @@ function getContentfulConfig() {
   };
 }
 
+function isUsableValue(value: string | undefined) {
+  if (!value) {
+    return false;
+  }
+
+  const normalized = value.trim();
+
+  if (!normalized) {
+    return false;
+  }
+
+  return normalized.toUpperCase() !== 'DOESNOTEXIST';
+}
+
+export function resolveContentTypeId(
+  candidates: Array<string | undefined>,
+  fallback: string
+) {
+  for (const candidate of candidates) {
+    if (isUsableValue(candidate)) {
+      return candidate!.trim();
+    }
+  }
+
+  return fallback;
+}
+
 export function hasContentfulConfig() {
   const { space, accessToken } = getContentfulConfig();
   return Boolean(space && accessToken);
@@ -68,10 +95,13 @@ type ArticleFields = {
 type ArticleSkeleton = EntrySkeletonType<ArticleFields>;
 
 export async function getArticles() {
-  const contentType =
-    process.env.CONTENTFUL_NEWS_CONTENT_TYPE_ID?.trim() ||
-    process.env.CONTENTFUL_ARTICLE_TYPE_ID?.trim() ||
-    'newsPressRelease';
+  const contentType = resolveContentTypeId(
+    [
+      process.env.CONTENTFUL_NEWS_CONTENT_TYPE_ID,
+      process.env.CONTENTFUL_ARTICLE_TYPE_ID,
+    ],
+    'newsPressRelease'
+  );
 
   return withContentfulClient(
     async (client) => {

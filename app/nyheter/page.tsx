@@ -3,6 +3,8 @@
 import { getArticles } from '@/lib/contentful';
 import { ArticleItem } from '@/components/ArticleItem';
 
+export const dynamic = 'force-dynamic';
+
 // very small helper for Contentful Rich Text -> plain text (one line per paragraph)
 function richTextToPlainText(doc: any): string {
   if (!doc || !doc.content) return '';
