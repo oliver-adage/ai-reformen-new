@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/partners/page.tsx
-import { contentfulClient } from '@/lib/contentful';
+import { withContentfulClient } from '@/lib/contentful';
 
 type TechnicalPartner = {
   id: string;
@@ -42,27 +42,33 @@ async function getTechnicalPartners(): Promise<TechnicalPartner[]> {
   const contentType =
     process.env.CONTENTFUL_TECHNICAL_PARTNER_TYPE_ID || 'technicalPartner';
 
-  const res = await contentfulClient.getEntries({
-    content_type: contentType,
-    order: ['fields.companyName'],
-    include: 1,
-  });
+  return withContentfulClient(
+    async (client) => {
+      const res = await client.getEntries({
+        content_type: contentType,
+        order: ['fields.companyName'],
+        include: 1,
+      });
 
-  return (res.items as any[]).map((item) => {
-    const fields = item.fields || {};
-    const logoFile = fields.logo?.fields?.file;
-    const logoUrl =
-      logoFile?.url && typeof logoFile.url === 'string'
-        ? `https:${logoFile.url}`
-        : undefined;
+      return (res.items as any[]).map((item) => {
+        const fields = item.fields || {};
+        const logoFile = fields.logo?.fields?.file;
+        const logoUrl =
+          logoFile?.url && typeof logoFile.url === 'string'
+            ? `https:${logoFile.url}`
+            : undefined;
 
-    return {
-      id: item.sys.id as string,
-      name: fields.companyName as string,
-      description: fields.description as string | undefined,
-      logoUrl,
-    };
-  });
+        return {
+          id: item.sys.id as string,
+          name: fields.companyName as string,
+          description: fields.description as string | undefined,
+          logoUrl,
+        };
+      });
+    },
+    [],
+    'technical partners'
+  );
 }
 
 async function getCollaborationPartners(): Promise<CollaborationPartner[]> {
@@ -70,27 +76,33 @@ async function getCollaborationPartners(): Promise<CollaborationPartner[]> {
     process.env.CONTENTFUL_COLLABORATION_PARTNER_TYPE_ID ||
     'collaborationPartner';
 
-  const res = await contentfulClient.getEntries({
-    content_type: contentType,
-    order: ['fields.organizationName'],
-    include: 2,
-  });
+  return withContentfulClient(
+    async (client) => {
+      const res = await client.getEntries({
+        content_type: contentType,
+        order: ['fields.organizationName'],
+        include: 2,
+      });
 
-  return (res.items as any[]).map((item) => {
-    const fields = item.fields || {};
-    const logoFile = fields.logo?.fields?.file;
-    const logoUrl =
-      logoFile?.url && typeof logoFile.url === 'string'
-        ? `https:${logoFile.url}`
-        : undefined;
+      return (res.items as any[]).map((item) => {
+        const fields = item.fields || {};
+        const logoFile = fields.logo?.fields?.file;
+        const logoUrl =
+          logoFile?.url && typeof logoFile.url === 'string'
+            ? `https:${logoFile.url}`
+            : undefined;
 
-    return {
-      id: item.sys.id as string,
-      name: fields.organizationName as string,
-      description: richTextToParagraphs(fields.organizationDescription),
-      logoUrl,
-    };
-  });
+        return {
+          id: item.sys.id as string,
+          name: fields.organizationName as string,
+          description: richTextToParagraphs(fields.organizationDescription),
+          logoUrl,
+        };
+      });
+    },
+    [],
+    'collaboration partners'
+  );
 }
 
 export default async function PartnersPage() {

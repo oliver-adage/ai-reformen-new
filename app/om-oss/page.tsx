@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // app/om-oss/page.tsx
-import { contentfulClient } from '@/lib/contentful';
+import { withContentfulClient } from '@/lib/contentful';
 
 type Biography = {
   id: string;
@@ -34,27 +34,33 @@ function richTextToParagraphs(doc: any): string[] {
 async function getBiographies(): Promise<Biography[]> {
   const contentType = process.env.CONTENTFUL_BIOGRAPHY_TYPE_ID || 'biography';
 
-  const res = await contentfulClient.getEntries({
-    content_type: contentType,
-    order: ['fields.firstNameLastName'],
-    include: 2,
-  });
+  return withContentfulClient(
+    async (client) => {
+      const res = await client.getEntries({
+        content_type: contentType,
+        order: ['fields.firstNameLastName'],
+        include: 2,
+      });
 
-  return (res.items as any[]).map((item) => {
-    const fields = item.fields || {};
-    const portraitFile = fields.portrait?.fields?.file;
-    const portraitUrl =
-      portraitFile?.url && typeof portraitFile.url === 'string'
-        ? `https:${portraitFile.url}`
-        : '';
+      return (res.items as any[]).map((item) => {
+        const fields = item.fields || {};
+        const portraitFile = fields.portrait?.fields?.file;
+        const portraitUrl =
+          portraitFile?.url && typeof portraitFile.url === 'string'
+            ? `https:${portraitFile.url}`
+            : '';
 
-    return {
-      id: item.sys.id as string,
-      name: fields.firstNameLastName as string,
-      portraitUrl,
-      presentation: richTextToParagraphs(fields.presentation),
-    };
-  });
+        return {
+          id: item.sys.id as string,
+          name: fields.firstNameLastName as string,
+          portraitUrl,
+          presentation: richTextToParagraphs(fields.presentation),
+        };
+      });
+    },
+    [],
+    'biographies'
+  );
 }
 
 export default async function OmOssPage() {
