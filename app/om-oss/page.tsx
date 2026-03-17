@@ -6,15 +6,24 @@ type Biography = {
   id: string;
   name: string;
   portraitUrl: string;
-  presentation: string[];
+  bio: string[];
 };
 
-function richTextToParagraphs(doc: any): string[] {
-  if (!doc || !Array.isArray(doc.content)) return [];
+function fieldToParagraphs(value: any): string[] {
+  if (!value) return [];
+
+  if (typeof value === 'string') {
+    return value
+      .split('\n')
+      .map((part) => part.trim())
+      .filter(Boolean);
+  }
+
+  if (!Array.isArray(value.content)) return [];
 
   const paragraphs: string[] = [];
 
-  for (const node of doc.content) {
+  for (const node of value.content) {
     if (node.nodeType === 'paragraph' && Array.isArray(node.content)) {
       let text = '';
       for (const child of node.content) {
@@ -32,19 +41,20 @@ function richTextToParagraphs(doc: any): string[] {
 }
 
 async function getBiographies(): Promise<Biography[]> {
-  const contentType = process.env.CONTENTFUL_BIOGRAPHY_TYPE_ID || 'biography';
+  const contentType =
+    process.env.CONTENTFUL_PERSON_TYPE_ID?.trim() || 'person';
 
   return withContentfulClient(
     async (client) => {
       const res = await client.getEntries({
         content_type: contentType,
-        order: ['fields.firstNameLastName'],
+        order: ['fields.order', 'fields.name'],
         include: 2,
       });
 
       return (res.items as any[]).map((item) => {
         const fields = item.fields || {};
-        const portraitFile = fields.portrait?.fields?.file;
+        const portraitFile = fields.portraitImage?.fields?.file;
         const portraitUrl =
           portraitFile?.url && typeof portraitFile.url === 'string'
             ? `https:${portraitFile.url}`
@@ -52,9 +62,9 @@ async function getBiographies(): Promise<Biography[]> {
 
         return {
           id: item.sys.id as string,
-          name: fields.firstNameLastName as string,
+          name: fields.name as string,
           portraitUrl,
-          presentation: richTextToParagraphs(fields.presentation),
+          bio: fieldToParagraphs(fields.bio),
         };
       });
     },
@@ -136,7 +146,7 @@ export default async function OmOssPage() {
                 )}
                 <div className="pt-3 mt-3 border-t border-yellow relative before:absolute before:top-1 before:left-0 before:w-full before:h-[1px] before:bg-yellow">
                   <h3 className="text-2xl mb-2">{bio.name}</h3>
-                  {bio.presentation.map((text, idx) => (
+                  {bio.bio.map((text, idx) => (
                     <p key={idx} className="text-md opacity-75">
                       {text}
                     </p>

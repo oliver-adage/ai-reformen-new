@@ -69,9 +69,8 @@ export default async function NyheterPage() {
                   <ArticleItem
                     id={id}
                     title={f.title}
-                    subtitle={f.subtitle}
-                    date={f.date}
-                    snippet={snippet || fullText}
+                    date={f.publishDate}
+                    snippet={f.summaryintro || snippet || fullText}
                     fullText={fullText}
                   />
                 </li>
