@@ -60,8 +60,9 @@ export async function withContentfulClient<T>(
 
 type ArticleFields = {
   title: EntryFieldTypes.Text;
-  subtitle?: EntryFieldTypes.Text;
-  date?: EntryFieldTypes.Date;
+  summaryintro?: EntryFieldTypes.Text;
+  publishDate?: EntryFieldTypes.Date;
+  body?: EntryFieldTypes.RichText;
 };
 
 type ArticleSkeleton = EntrySkeletonType<ArticleFields>;
@@ -70,13 +71,13 @@ export async function getArticles() {
   const contentType =
     process.env.CONTENTFUL_NEWS_CONTENT_TYPE_ID?.trim() ||
     process.env.CONTENTFUL_ARTICLE_TYPE_ID?.trim() ||
-    'pressrelease';
+    'newsPressRelease';
 
   return withContentfulClient(
     async (client) => {
       const res = await client.getEntries<ArticleSkeleton>({
         content_type: contentType,
-        order: ['-fields.date'],
+        order: ['-fields.publishDate'],
         limit: 5,
       });
 

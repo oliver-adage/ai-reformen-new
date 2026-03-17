@@ -5,8 +5,9 @@ import { withContentfulClient } from '@/lib/contentful';
 type TechnicalPartner = {
   id: string;
   name: string;
-  description?: string;
+  description: string[];
   logoUrl?: string;
+  partnerType?: string;
 };
 
 type CollaborationPartner = {
@@ -14,14 +15,32 @@ type CollaborationPartner = {
   name: string;
   description: string[];
   logoUrl?: string;
+  partnerType?: string;
 };
 
-function richTextToParagraphs(doc: any): string[] {
-  if (!doc || !Array.isArray(doc.content)) return [];
+type Partner = {
+  id: string;
+  name: string;
+  description: string[];
+  logoUrl?: string;
+  partnerType?: string;
+};
+
+function fieldToParagraphs(value: any): string[] {
+  if (!value) return [];
+
+  if (typeof value === 'string') {
+    return value
+      .split('\n')
+      .map((part) => part.trim())
+      .filter(Boolean);
+  }
+
+  if (!Array.isArray(value.content)) return [];
 
   const paragraphs: string[] = [];
 
-  for (const node of doc.content) {
+  for (const node of value.content) {
     if (node.nodeType === 'paragraph' && Array.isArray(node.content)) {
       let text = '';
       for (const child of node.content) {
@@ -38,15 +57,29 @@ function richTextToParagraphs(doc: any): string[] {
   return paragraphs;
 }
 
-async function getTechnicalPartners(): Promise<TechnicalPartner[]> {
+function classifyPartnerType(type: string | undefined) {
+  const normalized = type?.trim().toLowerCase() || '';
+
+  if (
+    normalized.includes('tech') ||
+    normalized.includes('tekn') ||
+    normalized.includes('technical')
+  ) {
+    return 'technical';
+  }
+
+  return 'collaboration';
+}
+
+async function getPartners(): Promise<Partner[]> {
   const contentType =
-    process.env.CONTENTFUL_TECHNICAL_PARTNER_TYPE_ID || 'technicalPartner';
+    process.env.CONTENTFUL_PARTNER_TYPE_ID?.trim() || 'partner';
 
   return withContentfulClient(
     async (client) => {
       const res = await client.getEntries({
         content_type: contentType,
-        order: ['fields.companyName'],
+        order: ['fields.order', 'fields.name'],
         include: 1,
       });
 
@@ -60,56 +93,26 @@ async function getTechnicalPartners(): Promise<TechnicalPartner[]> {
 
         return {
           id: item.sys.id as string,
-          name: fields.companyName as string,
-          description: fields.description as string | undefined,
+          name: fields.name as string,
+          description: fieldToParagraphs(fields.shortDescription),
           logoUrl,
+          partnerType: fields.type as string | undefined,
         };
       });
     },
     [],
-    'technical partners'
-  );
-}
-
-async function getCollaborationPartners(): Promise<CollaborationPartner[]> {
-  const contentType =
-    process.env.CONTENTFUL_COLLABORATION_PARTNER_TYPE_ID ||
-    'collaborationPartner';
-
-  return withContentfulClient(
-    async (client) => {
-      const res = await client.getEntries({
-        content_type: contentType,
-        order: ['fields.organizationName'],
-        include: 2,
-      });
-
-      return (res.items as any[]).map((item) => {
-        const fields = item.fields || {};
-        const logoFile = fields.logo?.fields?.file;
-        const logoUrl =
-          logoFile?.url && typeof logoFile.url === 'string'
-            ? `https:${logoFile.url}`
-            : undefined;
-
-        return {
-          id: item.sys.id as string,
-          name: fields.organizationName as string,
-          description: richTextToParagraphs(fields.organizationDescription),
-          logoUrl,
-        };
-      });
-    },
-    [],
-    'collaboration partners'
+    'partners'
   );
 }
 
 export default async function PartnersPage() {
-  const [technicalPartners, collaborationPartners] = await Promise.all([
-    getTechnicalPartners(),
-    getCollaborationPartners(),
-  ]);
+  const partners = await getPartners();
+  const technicalPartners: TechnicalPartner[] = partners.filter(
+    (partner) => classifyPartnerType(partner.partnerType) === 'technical'
+  );
+  const collaborationPartners: CollaborationPartner[] = partners.filter(
+    (partner) => classifyPartnerType(partner.partnerType) === 'collaboration'
+  );
 
   return (
     <section className="bg-blue text-white">
@@ -154,8 +157,10 @@ export default async function PartnersPage() {
                     <h4 className="text-xl font-semibold mb-2">
                       {partner.name}
                     </h4>
-                    {partner.description && (
-                      <p className="text-sm opacity-80">{partner.description}</p>
+                    {partner.description.length > 0 && (
+                      <p className="text-sm opacity-80">
+                        {partner.description.join(' ')}
+                      </p>
                     )}
                   </div>
                 </div>
