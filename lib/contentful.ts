@@ -89,10 +89,23 @@ type ArticleFields = {
   title: EntryFieldTypes.Text;
   summaryintro?: EntryFieldTypes.Text;
   publishDate?: EntryFieldTypes.Date;
+  publishdate?: EntryFieldTypes.Date;
   body?: EntryFieldTypes.RichText;
 };
 
 type ArticleSkeleton = EntrySkeletonType<ArticleFields>;
+
+function getArticleTimestamp(item: { fields?: Record<string, unknown> }) {
+  const rawValue =
+    item.fields?.publishDate ?? item.fields?.publishdate ?? undefined;
+
+  if (typeof rawValue !== 'string') {
+    return Number.NEGATIVE_INFINITY;
+  }
+
+  const timestamp = Date.parse(rawValue);
+  return Number.isNaN(timestamp) ? Number.NEGATIVE_INFINITY : timestamp;
+}
 
 export async function getArticles() {
   const contentType = resolveContentTypeId(
@@ -107,11 +120,12 @@ export async function getArticles() {
     async (client) => {
       const res = await client.getEntries<ArticleSkeleton>({
         content_type: contentType,
-        order: ['-fields.publishDate'],
         limit: 5,
       });
 
-      return res.items;
+      return [...res.items].sort(
+        (left, right) => getArticleTimestamp(right) - getArticleTimestamp(left)
+      );
     },
     [],
     'articles'
